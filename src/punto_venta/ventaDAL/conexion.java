@@ -7,6 +7,9 @@ package punto_venta.ventaDAL;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -24,6 +27,28 @@ public class conexion {
             System.out.println("Conexión establecida");
         } catch (Exception e) {
             System.out.println("Error de conexión"+e);
+        }
+    }
+    
+    public int ejecutar_sentencia_SQL(String strSentenciaSQL){
+        try{
+           PreparedStatement pstm = conn.prepareStatement(strSentenciaSQL);
+           pstm.execute();
+           return 1;
+        } catch (SQLException e){
+            System.out.println(e);
+            return 0;
+    }
+    }
+    
+    public ResultSet consultarRegistros(String strSentenciaSQL){
+        try {
+           PreparedStatement pstm = conn.prepareStatement(strSentenciaSQL);
+           ResultSet respuesta = pstm.executeQuery();
+           return respuesta;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
         }
     }
 }

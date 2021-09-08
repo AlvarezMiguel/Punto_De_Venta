@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package punto_venta.ventasGUI;
+import java.sql.ResultSet;
 import punto_venta.ventaDAL.conexion;
+import punto_venta.ventasBL.ventasBL;
 
 /**
  *
@@ -38,6 +40,7 @@ public class frmVentas extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         Price = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -78,6 +81,8 @@ public class frmVentas extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setText("Lista de productos ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -97,10 +102,17 @@ public class frmVentas extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
-                            .addComponent(Price, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Name_Product, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton4))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(Price, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton4))
+                                .addComponent(Name_Product, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(176, 176, 176)
+                .addComponent(jLabel3)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,10 +124,12 @@ public class frmVentas extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Price, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Price, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
@@ -136,8 +150,40 @@ public class frmVentas extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         conexion ObjConexion = new conexion();        // TODO add your handling code here:
+        
+        ventasBL Objventas = recuperarDatosGUI();
+        
+        String strSentenciaInsert = String.format("INSERT INTO Productos (ID, Nombre, Precio)" +
+                                                  "VALUES (null, '%s', '%s')", Objventas.getID(), Objventas.getNombre(), Objventas.getPrecio());
+        
+        ObjConexion.ejecutar_sentencia_SQL(strSentenciaInsert);
+        
+        try {
+            ResultSet resultado = ObjConexion.consultarRegistros("SELECT * FROM Productos");
+            while (resultado.next()) {
+                // NOTA: PODEMOS HACER LA IMPRESIÓN DE MEJOR MANERA O INCLUSO 
+                // EN OTRA VENTANA
+                System.out.println(resultado.getString("ID"));
+                System.out.println(resultado.getString("Nombre"));
+                System.out.println(resultado.getString("Precio"));
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    public ventasBL recuperarDatosGUI(){
+        ventasBL ObjventasBL = new ventasBL();
+        
+        int ID = (setID.getText().isEmpty())?0: Integer.parseInt(setID.getText()) ;
+        
+        ObjventasBL.setID(ID);
+        ObjventasBL.setNombre(txtNombre.getText())
+        ObjventasBL.setNombre(txtPrecio.getText())
+                
+        return ObjventasBL;
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -183,6 +229,7 @@ public class frmVentas extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
