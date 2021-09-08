@@ -30,7 +30,9 @@ public class frmEmpleados extends javax.swing.JFrame {
            modelo =new DefaultTableModel(null,titulos);
            tblEmpleados.setModel(modelo);       
            //Rellenando la tabla
-           mostrarDatos();
+           this.mostrarDatos();
+           this.limpiar();
+    
     }
 
     /**
@@ -88,10 +90,27 @@ public class frmEmpleados extends javax.swing.JFrame {
         });
 
         btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
         btnBorrar.setText("Borrar");
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+
+        txtID.setEditable(false);
 
         txtTelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,44 +125,42 @@ public class frmEmpleados extends javax.swing.JFrame {
         jLabel3.setText("Teléfono");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Empleados Registrados Actualmente");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel1)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel3)
-                                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
-                                .addComponent(txtTelefono))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(88, 88, 88)
-                        .addComponent(btnAgregar)
-                        .addGap(85, 85, 85)
-                        .addComponent(btnEditar)
-                        .addGap(101, 101, 101)
-                        .addComponent(btnBorrar)
-                        .addGap(111, 111, 111)
-                        .addComponent(btnCancelar)))
-                .addContainerGap(71, Short.MAX_VALUE))
+            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addGap(310, 310, 310))
+                .addGap(0, 35, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(93, 93, 93)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel1)
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel3)
+                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNombre)
+                        .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)
+                        .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(30, 30, 30)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -155,17 +172,17 @@ public class frmEmpleados extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAgregar)
-                    .addComponent(btnEditar)
-                    .addComponent(btnBorrar)
-                    .addComponent(btnCancelar))
-                .addGap(25, 25, 25)
+                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(42, 42, 42)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(33, 33, 33)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31))
         );
 
         pack();
@@ -176,10 +193,14 @@ public class frmEmpleados extends javax.swing.JFrame {
         conexion objConexion =new conexion();
         empleadosBL oEmpleados = recuperarDatosGUI();
         
+        //SENTENCIA PARA INSERTAR INFORMACIÓN
         String strSentenciaInsert = String.format("INSERT INTO Empleados (ID, Nombre, Telefono) " +
                 "VALUES (null, '%s',%s)", oEmpleados.getNombre(),oEmpleados.getTelefono());
              
         objConexion.ejecutarSentenciaSQL(strSentenciaInsert);
+        
+
+        
         try {
             ResultSet resultado = objConexion.consultarRegistros("SELECT * FROM Empleados");
             
@@ -193,11 +214,20 @@ public class frmEmpleados extends javax.swing.JFrame {
         } catch (Exception e) {
              System.out.println("Error "+e);
         }
+     this.mostrarDatos();
+     this.limpiar();
+        
         
     }//GEN-LAST:event_btnAgregarActionPerformed
        
     //RELLENAR TABLA CON VALORES EXISTENTES
     public void mostrarDatos(){
+        
+        while (modelo.getRowCount()>0){
+        modelo.removeRow(0);
+        }
+        
+        
         conexion objConexion =new conexion();
         try {
             ResultSet resultado = objConexion.consultarRegistros("SELECT * FROM Empleados");
@@ -235,12 +265,23 @@ public class frmEmpleados extends javax.swing.JFrame {
         
     }
     
+    public void limpiar(){
+    txtID.setText("");
+    txtNombre.setText("");
+    txtTelefono.setText("");
+    
+    btnAgregar.setEnabled(true);
+    btnEditar.setEnabled(false);
+    btnBorrar.setEnabled(false);
+    }
+    
+    
     private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTelefonoActionPerformed
 
     
-    //¿qué pasa al darle click a la tabla?
+    //¿qué pasa al darle click a la tabla? RECUPERA LOS DATOS DE LOS REGISTROS Y LOS VACÍA EN LOS CAMPOS, PARA SU POSIBLE EDICIÓN O BORRADO
     private void tblEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblEmpleadosMouseClicked
         // TODO add your handling code here:
         if(evt.getClickCount()==1){
@@ -251,10 +292,50 @@ public class frmEmpleados extends javax.swing.JFrame {
         txtTelefono.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(),2).toString() );
         
         }
-        
+        btnAgregar.setEnabled(false);
+        btnEditar.setEnabled(true);
+        btnBorrar.setEnabled(true);
         
         
     }//GEN-LAST:event_tblEmpleadosMouseClicked
+
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        // TODO add your handling code here:
+        conexion objConexion =new conexion();
+        empleadosBL oEmpleados = recuperarDatosGUI();
+        
+        //SENTENCIA PARA ELIMINAR INFORMACIÓN
+        String strSentenciaInsert = String.format("DELETE FROM Empleados WHERE ID=%d", oEmpleados.getID());
+        
+        //EJECUTA SENTENCIA SQL
+        objConexion.ejecutarSentenciaSQL(strSentenciaInsert);
+        this.mostrarDatos();
+        this.limpiar();
+    }//GEN-LAST:event_btnBorrarActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        // 
+        // TODO add your handling code here:
+        conexion objConexion =new conexion();
+        empleadosBL oEmpleados = recuperarDatosGUI();
+        
+        //SENTENCIA PARA INSERTAR INFORMACIÓN
+        String strSentenciaInsert = String.format("UPDATE Empleados SET Nombre='%s',Telefono='%s' WHERE ID=%d",
+                oEmpleados.getNombre(),oEmpleados.getTelefono(),oEmpleados.getID());
+             
+        objConexion.ejecutarSentenciaSQL(strSentenciaInsert);
+      
+        this.mostrarDatos();
+        this.limpiar();
+       
+        
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+
+    // TODO add your handling code here:
+     this.limpiar();  
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
      * @param args the command line arguments
