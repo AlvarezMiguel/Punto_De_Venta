@@ -11,7 +11,7 @@ package punto_venta.empleadosBL;
  */
 public class empleadosBL {
     int ID;
-    String nombre, correo;
+    String nombre,telefono ;
 
     public int getID() {
         return ID;
@@ -21,6 +21,14 @@ public class empleadosBL {
         this.ID = ID;
     }
 
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -28,14 +36,4 @@ public class empleadosBL {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-    
-    
 }
