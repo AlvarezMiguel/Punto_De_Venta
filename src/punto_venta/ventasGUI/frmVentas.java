@@ -271,14 +271,17 @@ public class frmVentas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // NOTA: Es aquí donde debemos enlazar la base de datos de inventario,
+        // o bien, mover este método a otra clase.
+        
         conexion ObjConexion = new conexion();        // TODO add your handling code here:
 
         ventasBL Objventas = recuperarDatosGUI();
 
-        String strSentenciaInsert = String.format("INSERT INTO Productos (ID, Nombre, Precio)" +
-            "VALUES (null, '%s', '%s')", Objventas.getID(), Objventas.getNombre(), Objventas.getPrecio());
+        //String strSentenciaInsert = String.format("INSERT INTO Productos (ID, Nombre, Precio)" +
+         //   "VALUES (null, '%s', '%s')", Objventas.getID(), Objventas.getNombre(), Objventas.getPrecio());
 
-        ObjConexion.ejecutar_sentencia_SQL(strSentenciaInsert);
+        //ObjConexion.ejecutar_sentencia_SQL(strSentenciaInsert);
 
         try {
             ResultSet resultado = ObjConexion.consultarRegistros("SELECT * FROM Productos");
@@ -288,6 +291,7 @@ public class frmVentas extends javax.swing.JFrame {
                 System.out.println(resultado.getString("ID"));
                 System.out.println(resultado.getString("Nombre"));
                 System.out.println(resultado.getString("Precio"));
+                System.out.println(resultado.getString("Clave"));
             }
         } catch (Exception e) {
             System.out.println(e);
