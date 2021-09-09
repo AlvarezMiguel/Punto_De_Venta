@@ -5,6 +5,7 @@
  */
 package punto_venta.ventasGUI;
 import java.sql.ResultSet;
+import punto_venta.empleadosGUI.frmEmpleados;
 import punto_venta.ventaDAL.conexion;
 import punto_venta.ventasBL.ventasBL;
 
@@ -31,9 +32,9 @@ public class frmVentas extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        Empleados = new javax.swing.JButton();
+        Inventario = new javax.swing.JButton();
+        Estadisticas = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         Vendedor = new javax.swing.JTextField();
@@ -55,7 +56,7 @@ public class frmVentas extends javax.swing.JFrame {
         IVA = new javax.swing.JTextField();
         Total = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        Salir = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -67,19 +68,19 @@ public class frmVentas extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setText("Empleados");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        Empleados.setText("Empleados");
+        Empleados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                EmpleadosActionPerformed(evt);
             }
         });
 
-        jButton6.setText("Inventario");
+        Inventario.setText("Inventario");
 
-        jButton7.setText("Estadísticas");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        Estadisticas.setText("Estadísticas");
+        Estadisticas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                EstadisticasActionPerformed(evt);
             }
         });
 
@@ -142,7 +143,7 @@ public class frmVentas extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Salir");
+        Salir.setText("Salir");
 
         jLabel10.setText("Hora");
 
@@ -184,11 +185,11 @@ public class frmVentas extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton5)
+                                .addComponent(Empleados)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Inventario, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton7)
+                                .addComponent(Estadisticas)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel10))
                             .addGroup(layout.createSequentialGroup()
@@ -201,7 +202,7 @@ public class frmVentas extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(119, 119, 119)
-                                .addComponent(jButton2))
+                                .addComponent(Salir))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jButton4)
                                 .addComponent(Clave, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -220,10 +221,10 @@ public class frmVentas extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
-                    .addComponent(jButton6)
-                    .addComponent(jButton7)
-                    .addComponent(jButton2)
+                    .addComponent(Empleados)
+                    .addComponent(Inventario)
+                    .addComponent(Estadisticas)
+                    .addComponent(Salir)
                     .addComponent(jLabel10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
@@ -313,13 +314,16 @@ public class frmVentas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void EstadisticasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EstadisticasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_EstadisticasActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void EmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmpleadosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+        frmEmpleados ventanaEmpleados = new frmEmpleados();  
+        ventanaEmpleados.setVisible(true);
+ 
+    }//GEN-LAST:event_EmpleadosActionPerformed
 
     public ventasBL recuperarDatosGUI(){
         ventasBL ObjventasBL = new ventasBL();
@@ -373,18 +377,18 @@ public class frmVentas extends javax.swing.JFrame {
     private javax.swing.JCheckBox Cancelado;
     private javax.swing.JTextField Cantidad;
     private javax.swing.JTextField Clave;
+    private javax.swing.JButton Empleados;
+    private javax.swing.JButton Estadisticas;
     private javax.swing.JTextField IVA;
+    private javax.swing.JButton Inventario;
     private javax.swing.JCheckBox Pago;
     private javax.swing.JTextField Producto;
+    private javax.swing.JButton Salir;
     private javax.swing.JTextField Subtotal;
     private javax.swing.JTextField Total;
     private javax.swing.JTextField Vendedor;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
