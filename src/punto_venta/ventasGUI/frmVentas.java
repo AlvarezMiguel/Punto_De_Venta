@@ -324,6 +324,7 @@ public class frmVentas extends javax.swing.JFrame {
     public ventasBL recuperarDatosGUI(){
         ventasBL ObjventasBL = new ventasBL();
         
+        //int Clave_DB = (Clave.getText())
         //int ID = (setID.getText().isEmpty())?0: Integer.parseInt(setID.getText()) ;
         
         //ObjventasBL.setID(ID);
