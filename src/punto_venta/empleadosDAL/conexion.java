@@ -15,7 +15,9 @@ import java.sql.ResultSet;
  * @author Rolando
  */
 public class conexion {
-        String strConexionDB="jdbc:sqlite:C:/Users/Rolando/Documents/NetBeansProjects/Punto_De_Venta/DataBase_Ventas.s3db"; //Ruta a la base de datos .s3db
+        String RutaRolio = "jdbc:sqlite:C:/Users/Rolando/Documents/NetBeansProjects/Punto_De_Venta/DataBase_Ventas.s3db";
+        String RutaOsqui = "jdbc:sqlite:C:/Users/OscarTeran/Documents/GitSites/Punto_De_Venta/DataBase_Ventas.s3db";
+        String strConexionDB = RutaOsqui; //Ruta a la base de datos .s3db
         Connection conn=null;
 
     public conexion() {

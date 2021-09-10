@@ -16,7 +16,8 @@ import java.sql.SQLException;
  * @author OscarTeran
  */
 public class conexion {
-    String strConexionDB = "jdbc:sqlite:C:/Users/OscarTeran/Documents/GitSites/Punto_De_Venta/DataBase_Ventas.s3db";
+    String file_path = "DataBase_Ventas.s3db";
+    String strConexionDB = file_path;
     Connection conn = null;
     
     public conexion(){
