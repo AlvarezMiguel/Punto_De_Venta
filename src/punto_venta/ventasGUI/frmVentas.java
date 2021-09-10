@@ -320,8 +320,8 @@ public class frmVentas extends javax.swing.JFrame {
 
     private void EmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmpleadosActionPerformed
         // TODO add your handling code here:
-        frmEmpleados ventanaEmpleados = new frmEmpleados();  
-        ventanaEmpleados.setVisible(true);
+        frmEmpleados ventanaEmpleados = new frmEmpleados();  // se crea una instacia del objeto frmEmpleados
+        ventanaEmpleados.setVisible(true); //Hace visible la ventana 
  
     }//GEN-LAST:event_EmpleadosActionPerformed
 

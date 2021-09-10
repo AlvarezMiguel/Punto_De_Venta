@@ -338,7 +338,7 @@ public class frmEmpleados extends javax.swing.JFrame {
      this.limpiar();  
      // Agregar una pausa 
      
-     dispose();
+     dispose(); // Hace que se cierre unicamente esta ventana 
      
      
      

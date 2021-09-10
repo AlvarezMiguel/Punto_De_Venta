@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package punto_venta.empleadosDAL;
+package punto_venta.InventarioDAL;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,11 +15,13 @@ import java.sql.ResultSet;
  * @author Rolando
  */
 public class conexion {
-        String RutaRolio = "jdbc:sqlite:C:/Users/Rolando/Documents/NetBeansProjects/Punto_De_Venta/DataBase_Ventas.s3db";
+String RutaRolio = "jdbc:sqlite:C:/Users/Rolando/Documents/NetBeansProjects/Punto_De_Venta/DataBase_Ventas.s3db";
         String RutaOsqui = "jdbc:sqlite:C:/Users/OscarTeran/Documents/GitSites/Punto_De_Venta/DataBase_Ventas.s3db";
         String strConexionDB = RutaRolio; //Ruta a la base de datos .s3db
         Connection conn=null;
 
+        
+    //Constructor
     public conexion() {
         try {
             Class.forName("org.sqlite.JDBC");
@@ -31,6 +33,8 @@ public class conexion {
         }
     }
         
+    
+    //Ejecuta una sentencia SQL al pasarle un String 
     public int ejecutarSentenciaSQL(String strSentenciaSQL){
         try { 
             PreparedStatement pstm=conn.prepareStatement(strSentenciaSQL);
@@ -56,7 +60,6 @@ public class conexion {
         }
     
     } 
-    
-    
+       
         
 }
